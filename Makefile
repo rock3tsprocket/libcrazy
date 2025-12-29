@@ -49,7 +49,6 @@ libcrazy.so:
 libcrazy.a:
 	${CC} ${CFLAGS} -c -o libcrazy-static.o libcrazy.c
 	${AR} rcs libcrazy.a libcrazy-static.o
-	@printf "Warning: The static library is probably broken.\n\n"
 
 .PHONY: clean
 clean:
