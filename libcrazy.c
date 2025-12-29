@@ -67,7 +67,7 @@ long int dectotern(long int tobeterned) {
 }
 
 long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, bool returntern) {
-	if (areintstern != 1) {
+	if (!areintstern) {
 		tobecrazied1 = dectotern(tobecrazied1);
 		tobecrazied2 = dectotern(tobecrazied2);
 	}
