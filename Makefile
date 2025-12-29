@@ -51,6 +51,7 @@ libcrazy.so: libcrazy.o
 	
 libcrazy.a: libcrazy.o
 	${AR} rcs libcrazy.a libcrazy.o
+	@echo "Warning: The static library is probably broken."
 
 .PHONY: clean
 clean:
