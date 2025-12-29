@@ -24,10 +24,10 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
 TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-#include <stdbool.h>
-
 #ifndef LIBCRAZY_H
 #define LIBCRAZY_H
+
+#include <stdbool.h>
 
 long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, bool returntern);
 
