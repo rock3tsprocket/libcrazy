@@ -1,3 +1,4 @@
-libcrazy.o
+libcrazy-dyn.o
+libcrazy-static.o
 libcrazy.a
 libcrazy.so
