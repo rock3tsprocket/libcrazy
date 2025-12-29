@@ -38,7 +38,7 @@ long int dectotern(long int tobeterned) {
 	while (1L) {
 		remainder = tobeterned % 3;
 		tobeterned = tobeterned / 3;
-		snprintf(tempresult, 2, "%ld", remainder);
+		snprintf(tempresult, 2, "%d", remainder);
 		strcat(resultstr, tempresult);
 		if (tobeterned == 0) break;
 	}
@@ -104,7 +104,7 @@ long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, b
 		 (trit1 == 0 && trit2 == 2) ||
 		(trit1 == 1 && trit2 == 2)) tritresult = 2;
 
-		snprintf(tempresult, 2, "%ld", tritresult);
+		snprintf(tempresult, 2, "%d", tritresult);
 		strcat(resultstr, tempresult);
 	}
 
