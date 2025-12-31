@@ -22,19 +22,34 @@ Examples:
 
 - Regular build:
 ```
-make
+$ make
 ```
 - Cross-compiling for GNU/Linux on ARMv7-A with -O3 optimizations:
 ```
-make CROSS_COMPILE=arm-linux-gnueabihf- CC=arm-linux-gnueabihf-gcc CFLAGS="-O3"
+$ make CROSS_COMPILE=arm-linux-gnueabihf- CC=arm-linux-gnueabihf-gcc CFLAGS="-O3"
+```
+
+### Installation
+Examples:
+
+- Regular installation (to /usr/local):
+```
+# make install
+```
+
+- Installation to /usr:
+```
+# make PREFIX=/usr install
 ```
 
 ## Functions
 
 - `long int dectotern(long int tobeterned)`:
+
 Converts `tobeterned` (long int) from decimal to ternary. Returns the result of the conversion (long int).
 
 - `long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, bool returntern)`:
+
 Performs the crazy operation on `tobecrazied1` (long int) and `tobecrazied2` (long int). `areintstern` (bool) specifies if `tobecrazied1` and `tobecrazied2`
 are in ternary already, if not they get converted with `dectotern`. `returntern` (bool) specifies if `crazy` should return the result in ternary or
 decimal.
