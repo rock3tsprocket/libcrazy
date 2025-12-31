@@ -27,8 +27,9 @@
 # This is the makefile for libcrazy.
 
 # Environment variables
-AR := ar
-CC := cc
+CROSS_COMPILE := 
+CC := ${CROSS_COMPILE}cc
+AR := ${CROSS_COMPILE}ar
 CFLAGS := -g -O2
 LDFLAGS := 
 PREFIX := /usr/local
