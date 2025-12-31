@@ -11,8 +11,8 @@ It includes both a function for converting numbers to ternary and a function tha
 
 ### Build configuration
 You can configure your libcrazy build to use a different compiler or ar, or a cross-compiler:
-- AR: Defaults to `ar`, specifies which ar the build should use.
-- CC: Defaults to `cc`, specifies which compiler the build should use.
+- AR: Defaults to `${CROSS_COMPILE}ar`, specifies which ar the build should use.
+- CC: Defaults to `${CROSS_COMPILE}cc`, specifies which compiler the build should use.
 - CFLAGS: Defaults to `-g -O2`, specifies C compiler arguments.
 - CROSS\_COMPILE: Defaults to nothing, specifies cross-compiler prefix.
 - LDFLAGS: Defaults to nothing, specifies linker flags.
