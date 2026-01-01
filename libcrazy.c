@@ -29,9 +29,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <stdlib.h>
 #include <string.h>
 
-/* Comply with ANSI C */
-int i;
-
 long int dectotern(long int tobeterned) {
 	/* Conversion to ternary */
 	int remainder;
@@ -90,6 +87,9 @@ long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, b
 	/* Performing the *crazy* operation per the table at
 	 * https://en.wikipedia.org/wiki/Malbolge#Crazy_operation */
 	size_t length = strlen(crazied1) > strlen(crazied2) ? strlen(crazied1) : strlen(crazied2);
+
+	/* Comply with ANSI C */
+	int i = 0;
 
 	for (i = 0; i < (int) length; i++) {
 		trit1 = crazied1[i] - '0';
