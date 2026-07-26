@@ -35,12 +35,11 @@ long int dectotern(long int tobeterned) {
 	char resultstr[21];
 	char tempresult[2];
 	
-	while (1L) {
+	while (tobeterned) {
 		remainder = tobeterned % 3;
 		tobeterned = tobeterned / 3;
 		snprintf(tempresult, 2, "%d", remainder);
 		strcat(resultstr, tempresult);
-		if (tobeterned == 0) break;
 	}
 	
 	/* Reversing the string result
