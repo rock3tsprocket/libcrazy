@@ -29,87 +29,86 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <stdlib.h>
 #include <string.h>
 
-long int dectotern(long int tobeterned) {
-	/* Conversion to ternary */
-	int remainder;
-	char resultstr[21];
-	char tempresult[2];
-	
-	while (tobeterned) {
-		remainder = tobeterned % 3;
-		tobeterned = tobeterned / 3;
-		snprintf(tempresult, 2, "%d", remainder);
-		strcat(resultstr, tempresult);
-	}
-	
-	/* Reversing the string result
-	 * (taken from GeeksForGeeks as
-	 * I am too stupid to do it myself)  */
-	int l = 0;
-	int r = strlen(resultstr) - 1;
-	char t;
+long libcrazy_pow(long x, long n) {
+    if (n < 0) {
+        x = 1 / x;
+        n -= n*2;
+    }
+    if (n == 0) return 1;
+    long y = 1;
+    while (n > 1) {
+        if (n & 1) {
+            y *= x;
+            n--;
+        }
+        x *= x;
+        n /= 2;
+    }
+    return x*y;
+}
 
-	/* Swap characters till l and r meet */
-	while (l < r) {
-		/* Swap characters */
-		t = resultstr[l];
-		resultstr[l] = resultstr[r];
-		resultstr[r] = t;
-
-		/* Move pointers towards each other */
-		l++;
-		r--;
-	}
-	
-	return strtol(resultstr, NULL, 10);
+long dectotern(long tobeterned) {
+    /* Conversion to ternary */
+    int remainder;
+    long result = 0;
+    int i = 0;
+    
+    while (tobeterned) {
+        remainder = tobeterned % 3;
+        tobeterned /= 3;
+        result += remainder * libcrazy_pow(10, i);
+        i++;
+    }
+    
+    return result;
 
 }
 
-long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, bool returntern) {
-	if (!areintstern) {
-		tobecrazied1 = dectotern(tobecrazied1);
-		tobecrazied2 = dectotern(tobecrazied2);
-	}
+long crazy(long tobecrazied1, long tobecrazied2, bool areintstern, bool returntern) {
+    if (!areintstern) {
+        tobecrazied1 = dectotern(tobecrazied1);
+        tobecrazied2 = dectotern(tobecrazied2);
+    }
     
-	char crazied1[21];
-	char crazied2[21];
-	snprintf(crazied1, 21, "%ld", tobecrazied1);
-	snprintf(crazied2, 21, "%ld", tobecrazied2);
+    char crazied1[21];
+    char crazied2[21];
+    snprintf(crazied1, 21, "%ld", tobecrazied1);
+    snprintf(crazied2, 21, "%ld", tobecrazied2);
 
-	/* Preparing result variables */
-	int trit1 = 0;
-	int trit2 = 0;
-	int tritresult = 0;
-	char tempresult[2];
-	char resultstr[21];
+    /* Preparing result variables */
+    int trit1 = 0;
+    int trit2 = 0;
+    int tritresult = 0;
+    char tempresult[2];
+    char resultstr[21];
 
-	/* Performing the *crazy* operation per the table at
-	 * https://en.wikipedia.org/wiki/Malbolge#Crazy_operation */
-	size_t length = strlen(crazied1) > strlen(crazied2) ? strlen(crazied1) : strlen(crazied2);
+    /* Performing the *crazy* operation per the table at
+     * https://en.wikipedia.org/wiki/Malbolge#Crazy_operation */
+    size_t length = strlen(crazied1) > strlen(crazied2) ? strlen(crazied1) : strlen(crazied2);
 
-	/* Comply with ANSI C */
-	int i = 0;
+    /* Comply with ANSI C */
+    int i = 0;
 
-	for (i = 0; i < (int) length; i++) {
-		trit1 = crazied1[i] - '0';
-		trit2 = crazied2[i] - '0';
-		int tritresult = 0;
-		if ((trit1 == 1 && trit2 == 0) ||
-		    (trit1 == 2 && trit2 == 0) ||
-		    (trit1 == 1 && trit2 == 1)) tritresult = 0;
+    for (i = 0; i < (int) length; i++) {
+        trit1 = crazied1[i] - '0';
+        trit2 = crazied2[i] - '0';
+        int tritresult = 0;
+        if ((trit1 == 1 && trit2 == 0) ||
+            (trit1 == 2 && trit2 == 0) ||
+            (trit1 == 1 && trit2 == 1)) tritresult = 0;
 
-		else if ((trit1 == 0 && trit2 == 0) ||
-		 (trit1 == 0 && trit2 == 1) ||
-		 (trit1 == 2 && trit2 == 2)) tritresult = 1;
+        else if ((trit1 == 0 && trit2 == 0) ||
+                 (trit1 == 0 && trit2 == 1) ||
+                 (trit1 == 2 && trit2 == 2)) tritresult = 1;
 
         else if ((trit1 == 2 && trit2 == 1) ||
-		 (trit1 == 0 && trit2 == 2) ||
-		(trit1 == 1 && trit2 == 2)) tritresult = 2;
+                 (trit1 == 0 && trit2 == 2) ||
+                 (trit1 == 1 && trit2 == 2)) tritresult = 2;
 
-		snprintf(tempresult, 2, "%d", tritresult);
-		strcat(resultstr, tempresult);
-	}
+        snprintf(tempresult, 2, "%d", tritresult);
+        strcat(resultstr, tempresult);
+    }
 
-	long int result = !returntern ? strtol(resultstr, NULL, 3) : strtol(resultstr, NULL, 10);
-	return result;
+    long result = !returntern ? strtol(resultstr, NULL, 3) : strtol(resultstr, NULL, 10);
+    return result;
 }
