@@ -29,7 +29,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include <stdbool.h>
 
-int LIBCRAZY_VER[] = {1, 3, 0};
+int LIBCRAZY_VER[] = {1, 3, 1};
 
 long int dectotern(long int tobeterned);
 long int terntodec(long int tobedecimaled);
