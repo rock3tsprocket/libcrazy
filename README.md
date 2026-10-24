@@ -1,6 +1,8 @@
 # libcrazy
-Libcrazy is a library that implements the [crazy operator](https://en.wikipedia.org/wiki/Malbolge#Crazy_operation) from Malbolge in C.
-It includes both a function for converting numbers to ternary and a function that does the crazy.
+Libcrazy is a library that implements the
+[crazy operator](https://en.wikipedia.org/wiki/Malbolge#Crazy_operation)
+from Malbolge in C. It includes both a function for converting numbers from
+decimal to ternary and vice versa, and a function that does the crazy.
 
 ## Building
 
@@ -42,14 +44,30 @@ Examples:
 # make PREFIX=/usr install
 ```
 
-## Functions
+## API reference
 
-- `long int dectotern(long int tobeterned)`:
+```
+long dectotern(long tobeterned)
+```
+Converts `tobeterned` from decimal to ternary and returns the result of the
+conversion.
 
-Converts `tobeterned` (long int) from decimal to ternary. Returns the result of the conversion (long int).
+```
+long terntodec(long tobedecimaled)
+```
+Converts `tobedecimaled` from ternary to decimal and returns the result of the
+conversion.
 
-- `long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, bool returntern)`:
+```
+long crazy(long tobecrazied1, long tobecrazied2, bool areintstern)
+```
+Performs the crazy operation on `tobecrazied1` and `tobecrazied2` and returns
+the result. `areintstern` (bool) specifies if `tobecrazied1` and `tobecrazied2`
+are in ternary already, if not they get converted with `dectotern`.
 
-Performs the crazy operation on `tobecrazied1` (long int) and `tobecrazied2` (long int). `areintstern` (bool) specifies if `tobecrazied1` and `tobecrazied2`
-are in ternary already, if not they get converted with `dectotern`. `returntern` (bool) specifies if `crazy` should return the result in ternary or
-decimal.
+```
+int LIBCRAZY_VER[3]
+```
+Contains the version of libcrazy that's currently installed (currently 1.3.0).
+`LIBCRAZY_VER[0]` is the major version, `LIBCRAZY_VER[1]` is the minor version,
+and `LIBCRAZY_VER[2]` is the patch version.

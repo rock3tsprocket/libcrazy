@@ -1,4 +1,4 @@
-/* Copyright 2025 rock3tsprocket
+/* Copyright 2026 rock3tsprocket
 
 Redistribution and use in source and binary forms, with or without modification, are permitted
 provided that the following conditions are met:
@@ -29,8 +29,10 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include <stdbool.h>
 
-long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern, bool returntern);
+int LIBCRAZY_VER[] = {1, 3, 0};
 
 long int dectotern(long int tobeterned);
+long int terntodec(long int tobedecimaled);
+long int crazy(long int tobecrazied1, long int tobecrazied2, bool areintstern);
 
 #endif /* LIBCRAZY_H */

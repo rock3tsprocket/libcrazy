@@ -1,4 +1,4 @@
-/* Copyright 2025 rock3tsprocket
+/* Copyright 2026 rock3tsprocket
 
 Redistribution and use in source and binary forms, with or without modification, are permitted
 provided that the following conditions are met:
@@ -27,14 +27,18 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdint.h>
+
+#define max(x, y) ((x) > (y) ? (x) : (y))
 
 long libcrazy_pow(long x, long n) {
+    if (x == 0) return 0;
+    if (x == 1 || n == 0) return 1;
+
     if (n < 0) {
         x = 1 / x;
         n -= n*2;
     }
-    if (n == 0) return 1;
     long y = 1;
     while (n > 1) {
         if (n & 1) {
@@ -64,38 +68,45 @@ long dectotern(long tobeterned) {
 
 }
 
-long crazy(long tobecrazied1, long tobecrazied2, bool areintstern, bool returntern) {
+long terntodec(long tobedecimaled) {
+    long result = 0;
+    size_t i = 0;
+
+    while (libcrazy_pow(10, i) < tobedecimaled) {
+        result += ((tobedecimaled / libcrazy_pow(10, i)) % 10) * libcrazy_pow(3, i);
+        i++;
+    }
+    return result;
+}
+
+long crazy(long tobecrazied1, long tobecrazied2, bool areintstern) {
     if (!areintstern) {
         tobecrazied1 = dectotern(tobecrazied1);
         tobecrazied2 = dectotern(tobecrazied2);
     }
     
-    char crazied1[21];
-    char crazied2[21];
-    snprintf(crazied1, 21, "%ld", tobecrazied1);
-    snprintf(crazied2, 21, "%ld", tobecrazied2);
-
     /* Preparing result variables */
     int trit1 = 0;
     int trit2 = 0;
     int tritresult = 0;
-    char tempresult[2];
-    char resultstr[21];
+    uint64_t result = 0;
 
     /* Performing the *crazy* operation per the table at
      * https://en.wikipedia.org/wiki/Malbolge#Crazy_operation */
-    size_t length = strlen(crazied1) > strlen(crazied2) ? strlen(crazied1) : strlen(crazied2);
+    
+    size_t length = max(tobecrazied1, tobecrazied2);
 
     /* Comply with ANSI C */
-    int i = 0;
+    size_t i;
 
-    for (i = 0; i < (int) length; i++) {
-        trit1 = crazied1[i] - '0';
-        trit2 = crazied2[i] - '0';
-        int tritresult = 0;
-        if ((trit1 == 1 && trit2 == 0) ||
-            (trit1 == 2 && trit2 == 0) ||
-            (trit1 == 1 && trit2 == 1)) tritresult = 0;
+    for (i = 0; libcrazy_pow(10, i) < length*10; i++) {
+        trit1 = (tobecrazied1 / libcrazy_pow(10, i)) % 10;
+        trit2 = (tobecrazied2 / libcrazy_pow(10, i)) % 10;
+        tritresult = 0;
+
+        if      ((trit1 == 1 && trit2 == 0) ||
+                 (trit1 == 2 && trit2 == 0) ||
+                 (trit1 == 1 && trit2 == 1)) tritresult = 0;
 
         else if ((trit1 == 0 && trit2 == 0) ||
                  (trit1 == 0 && trit2 == 1) ||
@@ -105,10 +116,8 @@ long crazy(long tobecrazied1, long tobecrazied2, bool areintstern, bool returnte
                  (trit1 == 0 && trit2 == 2) ||
                  (trit1 == 1 && trit2 == 2)) tritresult = 2;
 
-        snprintf(tempresult, 2, "%d", tritresult);
-        strcat(resultstr, tempresult);
+        result += tritresult * libcrazy_pow(10, i);
     }
 
-    long result = !returntern ? strtol(resultstr, NULL, 3) : strtol(resultstr, NULL, 10);
     return result;
 }
