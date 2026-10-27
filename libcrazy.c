@@ -79,9 +79,9 @@ long terntodec(long tobedecimaled) {
 }
 
 long crazy(long tobecrazied1, long tobecrazied2, bool areintstern) {
-    if (!areintstern) {
-        tobecrazied1 = dectotern(tobecrazied1);
-        tobecrazied2 = dectotern(tobecrazied2);
+    if (areintstern) {
+        tobecrazied1 = terntodec(tobecrazied1);
+        tobecrazied2 = terntodec(tobecrazied2);
     }
     
     /* Preparing result variables */
@@ -98,9 +98,9 @@ long crazy(long tobecrazied1, long tobecrazied2, bool areintstern) {
     /* Comply with ANSI C */
     size_t i;
 
-    for (i = 0; libcrazy_pow(10, i) < length*10; i++) {
-        trit1 = (tobecrazied1 / libcrazy_pow(10, i)) % 10;
-        trit2 = (tobecrazied2 / libcrazy_pow(10, i)) % 10;
+    for (i = 0; libcrazy_pow(3, i) < length*3; i++) {
+        trit1 = (tobecrazied1 / libcrazy_pow(3, i)) % 3;
+        trit2 = (tobecrazied2 / libcrazy_pow(3, i)) % 3;
         tritresult = 0;
 
         if      ((trit1 == 1 && trit2 == 0) ||
