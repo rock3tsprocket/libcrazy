@@ -68,6 +68,6 @@ are in ternary already, if not they get converted with `dectotern`.
 ```
 int LIBCRAZY_VER[3]
 ```
-Contains the version of libcrazy that's currently installed (currently 1.3.0).
+Contains the version of libcrazy that's currently installed (currently 1.3.2).
 `LIBCRAZY_VER[0]` is the major version, `LIBCRAZY_VER[1]` is the minor version,
 and `LIBCRAZY_VER[2]` is the patch version.
