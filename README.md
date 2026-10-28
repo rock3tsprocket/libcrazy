@@ -63,7 +63,7 @@ long crazy(long tobecrazied1, long tobecrazied2, bool areintstern)
 ```
 Performs the crazy operation on `tobecrazied1` and `tobecrazied2` and returns
 the result. `areintstern` (bool) specifies if `tobecrazied1` and `tobecrazied2`
-are in ternary already, if not they get converted with `dectotern`.
+are in ternary already, if they are, they get converted to decimal with `terntodec`.
 
 ```
 int LIBCRAZY_VER[3]
