@@ -26,7 +26,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 #include <stdbool.h>
 #include <stddef.h>
-#include <stdint.h>
 
 #define max(x, y) ((x) > (y) ? (x) : (y))
 
@@ -88,7 +87,7 @@ long crazy(long tobecrazied1, long tobecrazied2, bool areintstern) {
     int trit1 = 0;
     int trit2 = 0;
     int tritresult = 0;
-    uint64_t result = 0;
+    long result = 0;
 
     /* Performing the *crazy* operation per the table at
      * https://en.wikipedia.org/wiki/Malbolge#Crazy_operation */

@@ -8,7 +8,7 @@ decimal to ternary and vice versa, and a function that does the crazy.
 
 ### Dependencies
 - A standard C library.
-- ANSI C compiler or later.
+- ANSI C89/ISO C90 compiler or later.
 - Probably a POSIX-compliant environment idk i didn't test this on Windows.
 
 ### Build configuration
